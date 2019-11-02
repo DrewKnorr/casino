@@ -71,12 +71,37 @@ function card_shuffle(deckOfCards){
       delete temp_arr[random_num]
       shuffle_arr.push(temp_shuffle);
   }
-  console.log(temp_arr);
-  console.log(shuffle_arr);
+  console.log(shuffle_arr.length)
+  return shuffle_arr;
 }
 
 function black_jack(){
-  card_shuffle(deckOfCards)
+  let shuffled_cards=card_shuffle(deckOfCards);
+  let bet = 0;
+  let money = 200;
+  let first_round = true;
+  let continue_game = true;
+  let discard_pile = [];
+  let player_value = 0;
+  let continue_sel;
+
+  while(continue_game === true){
+      if(money < 0){
+          continue_sel=prompt("Sorry You Went Bust!\n Try Again?\n Yes/No:");
+          if(continue_sel.toLowerCase === "no"){
+              continue_game = false;
+          }
+          else{
+              black_jack();
+          }
+      }else{
+        if(first_round === true){
+            
+        }
+      }
+
+  }
+
 }
 
 // menu functions
