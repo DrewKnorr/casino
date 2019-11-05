@@ -1,18 +1,31 @@
+  // Player Object  
+
+  function Player(cards,money_bet, roulette_bet,money){
+      this.cards = [],
+      this.money_bet ='',
+      this.roulette_bet=''
+      this.money=money
+  }
+
+  const dealer={
+    dealer_cards : []
+  }
+  
   // Black Jack Functions
   const deckOfCards = {
-    ace:28,
-    king:28,
-    queen:28,
-    jack:28,
-    ten:28,
-    nine:28,
-    eight:28,
-    seven:28,
-    six:28,
-    five:28,
-    four:28,
-    three:28,
-    two:28
+    ace:4,
+    king:4,
+    queen:4,
+    jack:4,
+    ten:4,
+    nine:4,
+    eight:4,
+    seven:4,
+    six:4,
+    five:4,
+    four:4,
+    three:4,
+    two:4
   };
 
 
@@ -31,10 +44,22 @@ const cardValues = {
   three:3,
   two:2
 };
-
+const discard_pile = [];
 const suits =["hearts","dimonds","clubs","spades"];
 
+function first_round(player,shuffled_deck){
+    console.log(player)
+    player.cards.push(shuffled_deck.pop())
+    console.log(shuffled_deck.length)
+    console.log(player.cards)
 
+    player.cards.push(shuffled_deck.pop())
+    console.log(shuffled_deck.length)
+    console.log(player.cards)
+    Object.values(dealer).push(shuffled_deck.pop())
+    Object.values(dealer).push(shuffled_deck.pop())
+    console.log(dealer)
+}
 
 function card_shuffle(deckOfCards){
   console.log("Shuffle Startting")
@@ -48,18 +73,7 @@ function card_shuffle(deckOfCards){
   for(let cards = 0; cards < Object.keys(deckOfCards).length; cards++){
 
     for(let ct = 0; ct < temp_val[cards];ct++){
-        if(ct<7){
-            temp_arr.push(`${temp_key[cards]} of ${suits[0]}`)
-        }
-        else if(ct<14){
-            temp_arr.push(`${temp_key[cards]} of ${suits[1]}`)
-        }
-        else if(ct<21){
-            temp_arr.push(`${temp_key[cards]} of ${suits[2]}`)
-        }
-        else{
-            temp_arr.push(`${temp_key[cards]} of ${suits[3]}`)
-        }
+        temp_arr.push(`${temp_key[cards]} of ${suits[ct]}`)
        
     }
   }
@@ -72,17 +86,17 @@ function card_shuffle(deckOfCards){
       shuffle_arr.push(temp_shuffle);
   }
   console.log(shuffle_arr.length)
+  console.log(shuffle_arr)
   return shuffle_arr;
 }
 
 function black_jack(){
   let shuffled_cards=card_shuffle(deckOfCards);
-  let bet = 0;
-  let money = 200;
-  let first_round = true;
+  let first_round_bool = true;
   let continue_game = true;
   let discard_pile = [];
   let player_value = 0;
+  let money;
   let continue_sel;
 
   while(continue_game === true){
@@ -95,14 +109,16 @@ function black_jack(){
               black_jack();
           }
       }else{
-        if(first_round === true){
-            
+        if(first_round_bool === true){
+            const player = new Player(cards=[],money_bet =0,roulette_bet='',money=200,card_value=0);
+            first_round(player, shuffled_cards);
+            first_round_bool = false;
         }
       }
 
   }
-
 }
+
 
 // menu functions
 
@@ -138,7 +154,7 @@ function choice_handler(input_sel){
 
   
   
-  function menu(){
+function menu(){
       let quit = false;
       let intro_ran = false;
   
@@ -159,7 +175,7 @@ function choice_handler(input_sel){
         choice_handler(menu_option);
         quit = true;
       }
-  }
-  
+}
+
 
   
