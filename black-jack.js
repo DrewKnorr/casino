@@ -1,19 +1,3 @@
-const player ={
-    cards :[],
-    card_value : '',
-    points :'',
-    money:0,
-    name:''
-}
-
-const dealer = {
-    cards :[],
-    card_value : '',
-    points:'',
-    discard_pile:[]
-}
-
-
 function build_deck(){
     const suits = ["Spades", "Hearts", "Diamonds", "Clubs"];
     const cards = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"];
@@ -36,21 +20,120 @@ function build_deck(){
 
             newDeck.push(card);
         }
+        for(let ct =0; ct < 1000; ct++){
+            let index_one = Math.floor((Math.random()*newDeck.length));
+            let index_two = Math.floor((Math.random()*newDeck.length));
+            let temp_value = newDeck[index_one];
+    
+            newDeck[index_one] = newDeck[index_two];
+            newDeck[index_two] = temp_value;
+        }
     }
-    scramble(newDeck);
     return newDeck;
 }
 
-function scramble(deckOfCards){
-    for(let ct =0; ct < 1000; ct++){
-        let index_one = Math.floor((Math.random()*deckOfCards.length));
-        let index_two = Math.floor((Math.random()*deckOfCards.length));
-        let temp_value = deckOfCards[index_one];
+//Deck Build End
 
-        deckOfCards[index_one] = deckOfCards[index_two];
-        deckOfCards[index_two] = temp_value;
+
+function player_create(name){
+    const player = {
+        cards :[],
+        card_value : '',
+        money:200,
+        bet:0,
+        name:name
     }
+    return player;
+}
 
+function dealer_create(){
+    const dealer = {
+        cards :[],
+        card_value : '',
+        points:''
+    }
+    return dealer;
+}
+function clear_hand(player){
+    let temp_arr = player.cards;
+    console.log(temp_arr);
+    for(let ct = 0; ct < temp_arr.length; ct++){
+        player.cards= [];
+    }
+    
+}
+
+function player_clear(player){
+    player.cards= [];
+    player.card_value='';
+    player.money='';
+    player.bet='';
+    player.name='';
+}
+//Player settings end 
+
+
+function play_again(player){
+    let quit_var = prompt("Play Again? \n Yes or No?")
+    console.log(quit_var.toLowerCase())
+    if(quit_var.toLowerCase() === 'yes'){
+        return false;
+    }
+    else{
+        player_clear(player)
+        return true;
+    }
+}
+
+function bet_check(input_val,player){
+    while(input_val > player.money){
+        input_val = prompt(`Im Sorry but you only have $${player.money}\nPlease try agian.`)
+    }
+    return input_val;
+}
+//system functions end
+
+function dealer_play(dealer,deckOfCards){
+    if(dealer.card_value < 15){
+        dealer.cards.push(deckOfCards[0]);
+        deckOfCards.shift();
+
+    }
+}
+
+//dealer command end
+
+function add_card(player,deckOfCards){
+    player.cards.push(deckOfCards[0]);
+    deckOfCards.shift();
+    console.log("card added");
+    console.log()
+}
+
+function new_hand(player, dealer, deckOfCards){
+    player.cards.push(deckOfCards[0]);
+    deckOfCards.shift();
+    player.cards.push(deckOfCards[0]);
+    deckOfCards.shift();
+
+    dealer.cards.push(deckOfCards[0]);
+    deckOfCards.shift();
+    dealer.cards.push(deckOfCards[0]);
+    deckOfCards.shift();
+
+}
+
+function cards_show(player){
+    let cards_in_hand = '';
+    for(let ct = 0; ct<player.cards.length;ct++){
+        if(ct === 0){
+            cards_in_hand += `a ${player.cards[ct].Value} of ${player.cards[ct].Suit}`;
+        }
+        else{
+            cards_in_hand += ` and a ${player.cards[ct].Value} of ${player.cards[ct].Suit}`
+        }
+    }
+    return cards_in_hand;
 }
 
 function value_sum(input_obj){
@@ -65,95 +148,91 @@ function value_sum(input_obj){
     input_obj.card_value = result;
 }
 
-function new_round(dealer, player,deckOfCards){
-    console.log(deckOfCards.length)
-    player.cards.push(deckOfCards[0]);
-    deckOfCards.shift();
-    player.cards.push(deckOfCards[0]);
-    deckOfCards.shift();
-    dealer.cards.push(deckOfCards[0]);
-    deckOfCards.shift();
-    dealer.cards.push(deckOfCards[0]);
-    deckOfCards.shift();
-
-    value_sum(player);
-    value_sum(dealer);
-
-    console.log(`Deck of cards Lenght ${deckOfCards.length}`)
-    console.log(Object.values(player))
-    console.log(Object.values(dealer))
-}
-
-function first_round(dealer, player,deckOfCards){
-    console.log(`Deck of cards Lenght ${deckOfCards.length}`)
-    player.money = 200.00;
-
-    player.cards.push(deckOfCards[0]);
-    deckOfCards.shift();
-
-    player.cards.push(deckOfCards[0]);
-    deckOfCards.shift();
-
-    dealer.cards.push(deckOfCards[0]);
-    deckOfCards.shift();
-
-    dealer.cards.push(deckOfCards[0]);
-    deckOfCards.shift();
-
-    value_sum(player);
-    value_sum(dealer);
-
-    console.log(`Deck of cards Lenght ${deckOfCards.length}`)
-    console.log(Object.values(dealer))
-    console.log(Object.values(player))
-    console.log(bet);
-}
-
-function round_action(player,deckOfCards,bust){
-    let cards_in_hand = '';
-    for(let ct = 0; ct<player.cards.length;ct++){
-        if(ct === 0){
-            cards_in_hand += `a ${player.cards[ct].Value} of ${player.cards[ct].Suit}`;
-        }
-        else{
-            cards_in_hand += ` and a ${player.cards[ct].Value} of ${player.cards[ct].Suit}`
-        }
+function round_win(player,dealer){
+    let player_value = 21 - player.card_value;
+    let dealer_value = 21 - dealer.card_value;
+    
+    if(Number(player.card_value) > 21){
+        alert(`You Bust... \n -${player.bet} from account`);
+        player.money -= Number(player.bet);
+        player.bet =0;
     }
-    cards_in_hand = cards_in_hand.toString();
-    let input_val = prompt(`You have ${cards_in_hand}\n Adding up to be ${player.card_value}\n what would you like to do`)
-    console.log(player.cards[0])
-    while(bust === false){
-        if(input_val.toLowerCase()==='hit'){
-            bust=add_card(player,deckOfCards,bust);
-        }
-        else{
-            console.log("stay")
-        }
+    else if(dealer.card_value > 21){
+        alert(`Dealer Bust... \n ${player.bet} added to account`)
+        player.money += Number(player.bet);
+        player.bet =0;
     }
+    else if(player_value < dealer_value){
+        alert(`You Win !!! \n ${player.bet} added to account`)
+        player.money += Number(player.bet);
+        player.bet =0;
+    }
+    else{
+        alert(`Dealer Wins... \n -${player.bet} from account`)
+        player.money -= Number(player.bet);
+        player.bet =0;
+    }
+    clear_hand(player);
+    clear_hand(dealer);
 }
 
-function add_card(player,deckOfCards,bust){
-    player.cards.push(deckOfCards[0]);
-    deckOfCards.shift();
-    value_sum(player);
-    if(player.card_value > 21){
-        bust = true;
+function round(player,dealer,deck){
+    let hit_loop = true;
+    let bet = prompt(`Your Have $${player.money}\nHow Much Would You Like To Bet?`);
+    player.bet=bet_check(bet,player);
+    new_hand(player,dealer, deck);
 
-        alert(`You Bust On  A Value Of ${player.card_value}`)
-        player.cards=[],
-        player.card_value='',
-        player.points=''
+
+    
+
+
+    
+    while(hit_loop===true){
         
+        let cards_in_hand = cards_show(player);
+        cards_in_hand = cards_in_hand.toString();
+
+        value_sum(player)
+        if(Number(player.card_value) > 21){
+            hit_loop=false;
+            console.log("bust")
+        }else
+        {
+
+            let input_val = prompt(`You have ${cards_in_hand}\n Adding up to be ${player.card_value}\n what would you like to do`)
+            if(input_val.toLowerCase()==='stay'){
+                hit_loop= false;
+            }
+            else if(input_val.toLowerCase()==='hit'){
+                add_card(player,deck)
+            }
+            else{
+                alert("sorry that is not an option")
+            }
+        }
     }
-    return bust;
+
+    
+    dealer_play(dealer,deck);
+
+    round_win(player,dealer);
+
 }
 
-function main(){
-    let bust = false;
-    let count  = false;
-    let newDeckOfCards= build_deck();
-    name = prompt("enter name:")
-    player.name = name;
-    new_round(dealer,player,newDeckOfCards);
-    round_action(player,newDeckOfCards,bust);
+
+
+
+function game(){
+    let quit = false;
+    let deck = build_deck();
+    alert("Welcome To The Casino Royal Black Jack Table");
+    let player = player_create(prompt("Enter Your Name:"))
+    let dealer = dealer_create();
+    
+    while(quit === false){
+        console.log(player);
+        console.log(dealer);
+        round(player,dealer,deck)
+        quit=play_again(player);
+    }
 }
