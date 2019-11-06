@@ -5,16 +5,34 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" type="text/css" href="./styles/index.css">
-        <script type="text/javascript" src="/black-jack.js"></script>
+        <script type="text/javascript" src="./scripts/black-jack.js"></script>
+        <script type="text/javascript" src="./scripts/roulette.js"></script>
+        <script type="text/javascript" src="./scripts/slot-machine.js"></script>
         <title>Casino Royal</title>
     </head>
     <body>
-        <div class="menu">
-            <h1>Welcome To The Casino Royal!!</h1>
-            <button type="text" onclick="game()">Black Jack</button>
-            <button type="text" onclick="">Roulette</button>
-            <button type="text" onclick="">Slot Machines</button>
+        <div class="wrapper">
+            <div class="roulette_table" id="hidden">
+                <img src="./styles/photos/roulette_table.jpg" alt="">
+                <div class="button_wrapper">
+                    <button class="quit" onclick="roulette_quit()">Quit</button>
+                </div>
+            </div>
+            <div class="slot_machine" id="hidden">
+                <h1>Welcome To The Royal Slot Machines!</h1>
+                <div class="slot_results"></div>
+                <div class="button_wrapper">
+                    <button class="quit" onclick="machine_quit()">Quit</button>
+                </div>
+            </div>
+            <div class="menu" id="active">
+                <h1>Welcome To The Casino Royal!!</h1>
+                <button type="text" onclick="black_jack_game()">Black Jack</button>
+                <button type="text" onclick="roulette_game()">Roulette</button>
+                <button type="text" onclick="">Slot Machines</button>
+            </div>
         </div>
+        
         
 
     </body>

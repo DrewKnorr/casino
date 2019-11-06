@@ -174,6 +174,10 @@ function round_win(player,dealer){
     }
     clear_hand(player);
     clear_hand(dealer);
+
+    if(player.money <= 0){
+        player.money = 200;
+    }
 }
 
 function round(player,dealer,deck){
@@ -222,7 +226,7 @@ function round(player,dealer,deck){
 
 
 
-function game(){
+function black_jack_game(){
     let quit = false;
     let deck = build_deck();
     alert("Welcome To The Casino Royal Black Jack Table");

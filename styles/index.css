@@ -1,7 +1,44 @@
 .menu{
-    align-self: center;
-    justify-self: center;
-    border:2px solid black;
+
+    align-items: center;
+    justify-content: center;
     text-align:center;
     height:200px;
+    width:510px;
+    border:2px solid black;
+    overflow: hidden;
+    position: absolute;
+}
+
+body{
+    /* background-image:url('./photos/casino-backgroundjpg.jpg'); */
+    background-repeat:no-repeat;
+    justify-content: center;
+    align-content: center;
+}
+
+h1{
+    color:red;
+}
+
+.roulette_table{
+    height:250;
+    width:500;
+    overflow: hidden;
+    position: absolute;
+}
+
+#active{
+    visibility: active;
+}
+
+#hidden{
+    visibility: hidden;
+}
+.wrapper{
+    padding:15%;
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
 }
