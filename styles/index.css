@@ -47,7 +47,9 @@ h1{
 
 .black_jack{
     display:flex;
-    height:500px;
+    justify-content: center;
+    align-items:center;
+    height:300px;
     width:500px;
     border: 2px solid green;
     background-color:lightgreen;
@@ -56,6 +58,8 @@ h1{
 .new_game{
     height:100px;
     width:150px;
+    margin-left:25px;
+
 }
 
 #active{

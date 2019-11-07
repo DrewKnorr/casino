@@ -118,6 +118,7 @@ function newGame(){
     
     new_game.setAttribute("id","hidden");
     butttons.setAttribute("id","active");
+    black_jack_game()
     
 }
 //system functions end
