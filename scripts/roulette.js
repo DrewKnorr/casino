@@ -67,6 +67,10 @@ function wheel_spin(wheel){
     return result;
 }
 
+function get_bet(){
+
+}
+
 function win_check(input_val,spin_val){
     
 }
@@ -76,14 +80,14 @@ function roulette_game(){
     const newWheel = build_wheel();
     console.log(newWheel);
     let quit = false;
-    alert("Welcome To The Roulette Table!!");
-    while(quit===false){
-        let input_val = prompt("place your bet!");
-        input_val = input_val.toLowerCase();
-        let spin_val = wheel_spin(newWheel);
+    // alert("Welcome To The Roulette Table!!");
+    // while(quit===false){
+    //     let input_val = prompt("place your bet!");
+    //     input_val = input_val.toLowerCase();
+    //     let spin_val = wheel_spin(newWheel);
         
         
-    }
+    // }
 
     wheel_spin(newWheel);
 }

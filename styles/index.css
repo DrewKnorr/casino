@@ -22,10 +22,40 @@ h1{
 }
 
 .roulette_table{
-    height:250;
-    width:500;
-    overflow: hidden;
-    position: absolute;
+    height:450px;
+    width:900px;
+    padding:5%;
+    display:flex;
+    border:2px solid gold;
+    background-color: lightgray;
+
+}
+
+.roulette_table .bet_select{
+    display:flex;
+
+}
+.slot_machine{
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    text-align:center;
+    height:400px;
+    width:500px;
+    border :3px solid black;
+}
+
+.black_jack{
+    display:flex;
+    height:500px;
+    width:500px;
+    border: 2px solid green;
+    background-color:lightgreen;
+}
+
+.new_game{
+    height:100px;
+    width:150px;
 }
 
 #active{
@@ -33,7 +63,9 @@ h1{
 }
 
 #hidden{
+    margin-top:-300px;
     visibility: hidden;
+   
 }
 .wrapper{
     padding:15%;

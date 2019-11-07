@@ -11,6 +11,8 @@ const slot_wheal = {
     'J':'jackpot'
 }
 
+
+
 function machine_quit(){
     let menu= document.querySelector(".menu");
     let table = document.querySelector(".slot_machine");
@@ -25,3 +27,5 @@ function setup_machine(){
     menu.setAttribute("id","hidden")
     table.setAttribute("id","active")
 }
+
+

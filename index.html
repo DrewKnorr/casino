@@ -12,9 +12,69 @@
     </head>
     <body>
         <div class="wrapper">
+            <div class="black_jack" id="hidden">
+                <div class="cards_in_hand">
+
+                </div>
+                <div class="new_game" oncclick="newGame()" id="hidden">
+                    <button class="new_game" onclick="newGame()">New Game</button>
+                </div>
+                <div class="button_wrapper" id="hidden">
+                    <button class="stay">Stay</button>
+                    <button class="hit" onclick="">Hit</button>
+                    <button class="quit" onclick="black_jack_quit()">Quit</button>  
+                </div>
+                
+            </div>
             <div class="roulette_table" id="hidden">
                 <img src="./styles/photos/roulette_table.jpg" alt="">
+                <div class="bet_select">
+                    <div class="radio_btns">
+                        <input type="radio"  name="roulette_bet" value='0'>0
+                        <input type="radio"  name="roulette_bet" value='1'>1
+                        <input type="radio"  name="roulette_bet" value='2'>2
+                        <input type="radio"  name="roulette_bet" value='3'>3
+                        <input type="radio"  name="roulette_bet" value='4'>4
+                        <input type="radio"  name="roulette_bet" value='5'>5
+                        <input type="radio"  name="roulette_bet" value='6'>6
+                        <input type="radio"  name="roulette_bet" value='7'>7
+                        <input type="radio"  name="roulette_bet" value='8'>8
+                        <input type="radio"  name="roulette_bet" value='9'>9
+                        <input type="radio"  name="roulette_bet" value='10'>10
+                        <input type="radio"  name="roulette_bet" value='11'>11
+                        <input type="radio"  name="roulette_bet" value='12'>12
+                        <input type="radio"  name="roulette_bet" value='13'>13
+                        <input type="radio"  name="roulette_bet" value='14'>14
+                        <input type="radio"  name="roulette_bet" value='15'>15
+                        <input type="radio"  name="roulette_bet" value='16'>16
+                        <input type="radio"  name="roulette_bet" value='17'>17
+                        <input type="radio"  name="roulette_bet" value='18'>18
+                        <input type="radio"  name="roulette_bet" value='19'>19
+                        <input type="radio"  name="roulette_bet" value='20'>20
+                        <input type="radio"  name="roulette_bet" value='21'>21
+                        <input type="radio"  name="roulette_bet" value='22'>22
+                        <input type="radio"  name="roulette_bet" value='23'>23
+                        <input type="radio"  name="roulette_bet" value='24'>24
+                        <input type="radio"  name="roulette_bet" value='25'>25
+                        <input type="radio"  name="roulette_bet" value='26'>26
+                        <input type="radio"  name="roulette_bet" value='27'>27
+                        <input type="radio"  name="roulette_bet" value='28'>28
+                        <input type="radio"  name="roulette_bet" value='29'>29
+                        <input type="radio"  name="roulette_bet" value='30'>30
+                        <input type="radio"  name="roulette_bet" value='31'>31
+                        <input type="radio"  name="roulette_bet" value='32'>32
+                        <input type="radio"  name="roulette_bet" value='33'>33
+                        <input type="radio"  name="roulette_bet" value='34'>34
+                        <input type="radio"  name="roulette_bet" value='35'>35
+                        <input type="radio"  name="roulette_bet" value='odd'>Odd
+                        <input type="radio"  name="roulette_bet" value='even'>Even
+                        <input type="radio"  name="roulette_bet" value='black'>Black
+                        <input type="radio"  name="roulette_bet" value='red'>Red
+                    </div>
+                </div>
                 <div class="button_wrapper">
+                    <button class="place_bet">Place Bet</button>
+                    <button class="spin_the_wheel">Spin The Wheel!</button>
                     <button class="quit" onclick="roulette_quit()">Quit</button>
                 </div>
             </div>
@@ -22,14 +82,16 @@
                 <h1>Welcome To The Royal Slot Machines!</h1>
                 <div class="slot_results"></div>
                 <div class="button_wrapper">
+                    <button class="insert-coin" onclick="">Insert Coin</button>
+                    <button class="spin_slots" onclick="">Spin The Wheels</button>
                     <button class="quit" onclick="machine_quit()">Quit</button>
                 </div>
             </div>
             <div class="menu" id="active">
                 <h1>Welcome To The Casino Royal!!</h1>
-                <button type="text" onclick="black_jack_game()">Black Jack</button>
+                <button type="text" onclick="setup_black_jack()">Black Jack</button>
                 <button type="text" onclick="roulette_game()">Roulette</button>
-                <button type="text" onclick="">Slot Machines</button>
+                <button type="text" onclick="setup_machine()">Slot Machines</button>
             </div>
         </div>
         

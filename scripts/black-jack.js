@@ -32,6 +32,8 @@ function build_deck(){
     return newDeck;
 }
 
+
+
 //Deck Build End
 
 
@@ -73,6 +75,7 @@ function player_clear(player){
 //Player settings end 
 
 
+
 function play_again(player){
     let quit_var = prompt("Play Again? \n Yes or No?")
     console.log(quit_var.toLowerCase())
@@ -90,6 +93,32 @@ function bet_check(input_val,player){
         input_val = prompt(`Im Sorry but you only have $${player.money}\nPlease try agian.`)
     }
     return input_val;
+}
+
+function black_jack_quit(){
+    let menu= document.querySelector(".menu");
+    let table = document.querySelector(".black_jack");
+    console.log(menu);
+    menu.setAttribute("id","active")
+    table.setAttribute("id","hidden")
+}
+function setup_black_jack(){
+    let menu= document.querySelector(".menu");
+    let table = document.querySelector(".black_jack");
+    let new_game = document.querySelector(".new_game");
+    console.log(menu);
+    menu.setAttribute("id","hidden")
+    table.setAttribute("id","active")
+    new_game.setAttribute("id","active")
+}
+
+function newGame(){
+    let new_game= document.querySelector(".new_game");
+    let butttons = document.querySelector(".button_wrapper");
+    
+    new_game.setAttribute("id","hidden");
+    butttons.setAttribute("id","active");
+    
 }
 //system functions end
 
@@ -133,6 +162,12 @@ function cards_show(player){
             cards_in_hand += ` and a ${player.cards[ct].Value} of ${player.cards[ct].Suit}`
         }
     }
+
+    let temp_var = document.querySelector(".cards_in_hand");
+    console.log("temp_var")
+
+
+
     return cards_in_hand;
 }
 
